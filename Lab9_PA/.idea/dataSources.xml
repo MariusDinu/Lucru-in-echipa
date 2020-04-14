@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MusicAlbums@DESKTOP-6VC56G8" uuid="4509cd59-7086-4398-8e43-eb69ead2e1b6">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://DESKTOP-6VC56G8\SQLEXPRESS:1433;database=MusicAlbums</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="DESKTOP-6VC56G8\SQLEXPRESS" uuid="21ff793b-7bfe-4971-b58c-152ccf69fc36">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://DESKTOP-6VC56G8\SQLEXPRESS:1433</jdbc-url>
+    </data-source>
+  </component>
+</project>
