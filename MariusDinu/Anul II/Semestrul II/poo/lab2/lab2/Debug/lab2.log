@@ -1,0 +1,3 @@
+﻿  NumberList.cpp
+C:\Users\nassa\source\repos\lab22\NumberList.cpp(42,23): warning C4018: '<': signed/unsigned mismatch
+  lab2.vcxproj -> C:\Users\nassa\source\repos\lab2\Debug\lab2.exe

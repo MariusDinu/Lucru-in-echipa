@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\programe\visual studio space-work\lab8\readSentenceFromFile.h(15,18): warning C4129: 'p': unrecognized character escape sequence
+D:\programe\visual studio space-work\lab8\readSentenceFromFile.h(15,18): warning C4129: 'l': unrecognized character escape sequence
+  lab8.vcxproj -> D:\programe\visual studio space-work\lab8\lab8\Debug\lab8.exe
