@@ -11,13 +11,14 @@ import java.util.List;
 
 public class AlbumRepository {
 
-   private EntityManagerFactory entityManagerFactory;
+    private EntityManagerFactory entityManagerFactory;
 
     public AlbumRepository(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
     }
-/**/
-    public void create(AlbumsEntity album){
+
+    /**/
+    public void create(AlbumsEntity album) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         /*deschidem conexiunea*/
         entityManager.getTransaction().begin();
@@ -30,36 +31,38 @@ public class AlbumRepository {
         /*inchidem conexiunea*/
     }
 
-    public List<AlbumsEntity> findById (int id){
+    public List<AlbumsEntity> findById(int id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         /*deschidem conexiunea */
-        Query query=entityManager.createQuery("select album from AlbumsEntity album where album.id="+id);
+        Query query = entityManager.createQuery("select album from AlbumsEntity album where album.id=" + id);
         /*executam comanda sql*/
-       List< AlbumsEntity> albums =  query.getResultList();
+        List<AlbumsEntity> albums = query.getResultList();
         /*stocam datele*/
         entityManager.close();
         /*inchidem conexiunea*/
         return albums;
         /*returnam lista*/
     }
-    public List<AlbumsEntity> findByName(String name){
+
+    public List<AlbumsEntity> findByName(String name) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         /*deschidem conexiunea*/
-        Query query=entityManager.createQuery("select album from AlbumsEntity album where album.name like '"+name+"'");
+        Query query = entityManager.createQuery("select album from AlbumsEntity album where album.name like '" + name + "'");
         /*executam comanda sql*/
-        List<AlbumsEntity> albums =  query.getResultList();
+        List<AlbumsEntity> albums = query.getResultList();
         /*stocam datele*/
         entityManager.close();
         /*inchidem conexiunea*/
         return albums;
-       /* returnam lista*/
+        /* returnam lista*/
     }
+
     public List<AlbumsEntity> findByArtist(int id) throws SQLException {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         /*deschidem conexiunea*/
-        Query query=entityManager.createQuery("select album from AlbumsEntity album where album.artistId="+id);
+        Query query = entityManager.createQuery("select album from AlbumsEntity album where album.artistId=" + id);
         /*executam comanda sql*/
-        List<AlbumsEntity> albums2 =  query.getResultList();
+        List<AlbumsEntity> albums2 = query.getResultList();
         /*stocam datele*/
         entityManager.close();
         /*inchidem conexiunea*/

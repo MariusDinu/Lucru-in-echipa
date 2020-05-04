@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="Game" transaction-type="RESOURCE_LOCAL">
+        <class>com.example.demo.model.GameEntity</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:sqlserver://DESKTOP-6VC56G8\\SQLEXPRESS:1433;database=Games;integratedSecurity=true"/>
+            <property name="toplink.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="hibernate.connection.url"
+                      value="jdbc:sqlserver://DESKTOP-6VC56G8\\SQLEXPRESS:1433;database=Games"/>
+            <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="openjpa.ConnectionURL"
+                      value="jdbc:sqlserver://DESKTOP-6VC56G8\\SQLEXPRESS:1433;database=Games"/>
+            <property name="openjpa.ConnectionDriverName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="eclipselink.jdbc.url"
+                      value="jdbc:sqlserver://DESKTOP-6VC56G8\\SQLEXPRESS:1433;database=Games;integratedSecurity=true"/>
+            <property name="eclipselink.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -4,12 +4,10 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class GameClient
-{
+public class GameClient {
 
 
-    public static void main(String[] args) throws IOException
-    {
+    public static void main(String[] args) throws IOException {
         try {
             Scanner scn = new Scanner(System.in);
 
@@ -50,9 +48,9 @@ public class GameClient
                         System.out.println(received);
                         break;  /*verificam daca e create si vom crea o camera de joc */
                     case "Join":
-                           String received2 = dis.readUTF();
-                            System.out.println(received2);
-                       break;  /*verificam daca e join si vom intra intr-o camera de joc*/
+                        String received2 = dis.readUTF();
+                        System.out.println(received2);
+                        break;  /*verificam daca e join si vom intra intr-o camera de joc*/
                     case "Move":
                         String[][] cde = new String[8][8];
                         /*copiem in cde ce am primit de la server*/
@@ -66,34 +64,40 @@ public class GameClient
                         for (int i = 0; i < 8; i++) {
                             /*afisam ce am copiat in cde*/
                             for (int j = 0; j < 8; j++) {
-                                if (j <= 6) { if(cde[i][j].equals("W")||cde[i][j].equals("B")){
-                                    System.out.print(' '+cde[i][j]+',');
-                                }
-                                  else  {if (Integer.valueOf(cde[i][j]) <= 9)
+                                if (j <= 6) {
+                                    if (cde[i][j].equals("W") || cde[i][j].equals("B")) {
                                         System.out.print(' ' + cde[i][j] + ',');
-                                    else
-                                        System.out.print(cde[i][j] + ',');}
+                                    } else {
+                                        if (Integer.valueOf(cde[i][j]) <= 9)
+                                            System.out.print(' ' + cde[i][j] + ',');
+                                        else
+                                            System.out.print(cde[i][j] + ',');
+                                    }
                                 } else
                                     System.out.print(cde[i][j] + "\n");
                             }
                         }
-                        received = dis.readUTF();System.out.println(received);   /*primim mesajul legat de pozitia pe care o vom alege*/
-                        String sendStringInt=scn.nextLine();dos.writeUTF(sendStringInt);  /*trimitem pozitia catre server*/
+                        received = dis.readUTF();
+                        System.out.println(received);   /*primim mesajul legat de pozitia pe care o vom alege*/
+                        String sendStringInt = scn.nextLine();
+                        dos.writeUTF(sendStringInt);  /*trimitem pozitia catre server*/
                         break;
                     /*verificam daca e move si vom realiza o mutare*/
 
                     default:
-                        System.out.println("Comanda invalida!"); break; /*afisam doar daca comanda nu se afla in cele de mai sus*/
+                        System.out.println("Comanda invalida!");
+                        break; /*afisam doar daca comanda nu se afla in cele de mai sus*/
                 }
 
 
             }/*inchidem citirea si trimirea mesajelor catre server si citirea de la tastatura*/
-                scn.close();
-                dis.close();
-                dos.close();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }}
+            scn.close();
+            dis.close();
+            dos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 

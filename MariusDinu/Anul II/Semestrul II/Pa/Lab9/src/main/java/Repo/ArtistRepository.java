@@ -16,7 +16,8 @@ public class ArtistRepository {
     public ArtistRepository(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
     }
-    public void create(ArtistsEntity artist){
+
+    public void create(ArtistsEntity artist) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         /*deschidem conexiunea*/
         entityManager.getTransaction().begin();
@@ -29,24 +30,25 @@ public class ArtistRepository {
         /*inchidem conexiunea*/
     }
 
-    public List<ArtistsEntity> findById (int id){
+    public List<ArtistsEntity> findById(int id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         /*deschidem conexiunea*/
-        Query query=entityManager.createQuery("select artist from ArtistsEntity artist where artist.id="+id);
+        Query query = entityManager.createQuery("select artist from ArtistsEntity artist where artist.id=" + id);
         /*executam comanda sql*/
-         List<ArtistsEntity> artist =  query.getResultList();
+        List<ArtistsEntity> artist = query.getResultList();
         /*stocam datele*/
         entityManager.close();
         /*inchidem conexiunea*/
         return artist;
         /*returnam lista*/
     }
-    public List<ArtistsEntity> findByName(String name){
+
+    public List<ArtistsEntity> findByName(String name) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         /*deschidem conexiunea*/
-        Query query=entityManager.createQuery("select artist from ArtistsEntity artist where artist.name like '"+name+"'");
+        Query query = entityManager.createQuery("select artist from ArtistsEntity artist where artist.name like '" + name + "'");
         /*executam comanda sql*/
-        List<ArtistsEntity> artist2 =  query.getResultList();
+        List<ArtistsEntity> artist2 = query.getResultList();
         /*stocam datele*/
         entityManager.close();
         /*inchidem conexiunea*/

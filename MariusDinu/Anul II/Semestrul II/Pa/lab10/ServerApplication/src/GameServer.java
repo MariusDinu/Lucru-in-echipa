@@ -12,7 +12,7 @@ public class GameServer {
         ServerSocket ss = new ServerSocket(3000);
         System.out.println("Serverul s-a pornit!");
         System.out.println("Serverul asteapta sa se conecteze utilizatorii...");
-        while(true) {
+        while (true) {
             Socket s = null;
 
             try {

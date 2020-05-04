@@ -6,7 +6,6 @@
 package sgbd;
 
 /**
- *
  * @author mariu
  */
 public class Sgbd {
@@ -15,7 +14,7 @@ public class Sgbd {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
+
     }
-    
+
 }
