@@ -1,0 +1,23 @@
+Afisare numar cursuri predate de prof.
+select count(c.titlu_curs) from profesori p join didactic d on p.id=d.id_profesor join cursuri c on d.id_curs=c.id where p.nume like 
+'Dinu' group by p.nume;
+
+Afisare studenti picati si promovati la prima materie predat de profesor.
+select s.nume,n.valoare from studenti s join note n on s.id=n.id_student join cursuri c on n.id_curs=c.id where c.titlu_curs like 
+( select titlu_curs from ( select c.titlu_curs from profesori p join didactic d on p.id=d.id_profesor join cursuri c on d.id_curs=c.id 
+where p.nume like 'Dinu' group by c.titlu_curs order by c.titlu_curs) where rownum=1 );
+
+Afisare studenti promovati.
+select s.nume,n.valoare from studenti s join note n on s.id=n.id_student join cursuri c on n.id_curs=c.id where c.titlu_curs like 
+( select titlu_curs from ( select c.titlu_curs from profesori p join didactic d on p.id=d.id_profesor join cursuri c on d.id_curs=c.id 
+where p.nume like 'Dinu' group by c.titlu_curs order by c.titlu_curs) where rownum=1 )and n.valoare>4;
+
+Afisare studenti nepromovati.
+select s.nume,n.valoare from studenti s join note n on s.id=n.id_student join cursuri c on n.id_curs=c.id where c.titlu_curs like 
+( select titlu_curs from ( select c.titlu_curs from profesori p join didactic d on p.id=d.id_profesor join cursuri c on d.id_curs=c.id 
+where p.nume like 'Dinu' group by c.titlu_curs order by c.titlu_curs) where rownum=1 )and n.valoare<5;
+
+Afisare profesori care predau aceeasi materie.
+select p.nume,p.prenume from profesori p join didactic d on p.id=d.id_profesor join cursuri c on d.id_curs=c.id where c.titlu_curs  
+like (select titlu_curs from ( select c.titlu_curs from profesori p join didactic d on p.id=d.id_profesor join cursuri c on d.id_curs=c.id
+ where p.nume like 'Dinu' group by c.titlu_curs) where rownum=1);

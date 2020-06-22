@@ -1,0 +1,3 @@
+data MobileDevice = Smartphone
+                    |Tablet
+                    |Laptop

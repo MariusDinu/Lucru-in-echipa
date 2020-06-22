@@ -1,0 +1,7 @@
+Sa se construiasca un script care la rulare va intreba numele unui profesor. 
+Daca profesorul exista in baza de date, se vor afisa numarul de cursuri predate
+si pentru primul dintre cursuri (in ordine aflabetica) e vor afisa:
+- numarul de studenti promovati
+- numarul de studenti nepromovati (dar care au dat examenul)
+- cati profesori predau acel curs (trebuie sa fie macar 1 - cel initial)
+- cate cursuri mai predau acei profesori

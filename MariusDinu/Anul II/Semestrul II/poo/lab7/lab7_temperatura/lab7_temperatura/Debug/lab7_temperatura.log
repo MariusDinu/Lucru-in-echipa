@@ -1,8 +1,0 @@
-﻿  main.cpp
-D:\programe\visual studio space-work\lab7\lab7_temperatura\lab7_temperatura\Kelvin.h(6,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\programe\visual studio space-work\lab7\lab7_temperatura\lab7_temperatura\Kelvin.h(7,21): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-D:\programe\visual studio space-work\lab7\lab7_temperatura\lab7_temperatura\Fahrenheit.h(6,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\programe\visual studio space-work\lab7\lab7_temperatura\lab7_temperatura\Fahrenheit.h(7,30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-D:\programe\visual studio space-work\lab7\lab7_temperatura\lab7_temperatura\main.cpp(6,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\programe\visual studio space-work\lab7\lab7_temperatura\lab7_temperatura\main.cpp(7,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  lab7_temperatura.vcxproj -> D:\programe\visual studio space-work\lab7\lab7_temperatura\Debug\lab7_temperatura.exe
