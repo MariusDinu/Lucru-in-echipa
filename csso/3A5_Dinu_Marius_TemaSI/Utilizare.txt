@@ -1,0 +1,15 @@
+Necesare :
+    g++
+    openssl evp
+
+Compilare :
+    bash compile.sh sau
+        g++ bNode.cpp UtilCrypto.cpp UtilSocket.cpp -o node_B -lcrypto
+        g++ aNode.cpp UtilCrypto.cpp UtilSocket.cpp -o node_A -lcrypto
+        g++ main.cpp UtilCrypto.cpp UtilSocket.cpp -o node_KM -lcrypto
+
+Rulare :
+    Intai se deschide node_KM, dupa care node_A, dupa care node_B
+    nodul A va cere input, nodul B va afisa
+
+    Se alege din nodul A un mod de rulare, dupa care se da path-ul la un fisier

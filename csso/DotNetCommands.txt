@@ -1,0 +1,37 @@
+1. dotnet --info => all versions already installed(SDK's and Runtimes)
+See Host and explain that this is the default
+
+
+2. dotnet -h
+3. dotnet new -h
+	3.1 build a sln file (container for our projects) => dotnet new sln
+	3.2 build a webapi => dotnew new webapi -o API
+
+4. Add API project into our solution: dotnet sln add API
+5. VS Code extensions for .NET Core
+	5.1 C# Extensions 
+	5.2 C#
+	5.3 Material Icon Theme 
+	=> then show the default command from background (especially commands)
+
+6. VSCode configs
+	- AutoSave (File=> AutoSave)
+	- Preferences -> Settings (Font, Console, Terminal - 19)
+	- Filter bin and obj folders -> Settings -> exlude - Add pattern
+	- folder => Command folders
+7. run application: dotnet run => discuss about:
+	- controllers/routes/action
+
+8. Install nuget packages
+	- nuget => Nuget Gallery
+9. INstall Microsoft.EntityFrameworkCore.Sqlite
+10. Connection String for our database
+	"ConnectionStrings": {
+    "DefaultConnection": "Data Source=studentapp.db"
+  },
+11. config
+12. nuget.org => dotnet-ef => dotnet tool install --global dotnet-ef --version 3.1.9
+13. Add migrations => API
+	dotnet ef migrations add InitialCreate -o Data/Migrations
+14. create the database: dotnet ef database update
+15 install SQLite extension
