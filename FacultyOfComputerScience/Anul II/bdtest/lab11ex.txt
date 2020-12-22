@@ -1,0 +1,9 @@
+Asigurati-va că începeți o nouă tranzacție.
+Ștergeți toate înregistrările din tabela Profesori.
+Inserați un profesor.
+Marcați starea curentă ca 's1'.
+Schimbați numele profesorului inserat.
+Vizualizați datele.
+Reveniți la starea s1.
+Vizualizați datele.
+Reveniția la starea de dinaintea ștergerii.
