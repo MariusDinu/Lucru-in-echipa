@@ -1,0 +1,19 @@
+
+Student: Dinu Marius
+Grupa: 3CSSO1
+
+
+Comenzi:
+
+1. Creare cheie ---> createreg HKEY_CURRENT_CONFIG Software\(nume cheie)
+2. Delete cheie ---> deletereg HKEY_CURRENT_CONFIG Software\(cheie creata)
+
+3.a. Creare fisier ---> createfile path(Ex: C:\Users\mariu\Desktop\test\choose.txt)
+3.b. Append fisier ---> appendfile path(Ex: C:\Users\mariu\Desktop\test\choose.txt) text
+4. Delete fisier ---> deletefile path 
+
+5. Run fisier ---> run path (Ex:  C:\Windows\system32\calc.exe)
+
+6. Download fisier ---> download path (Ex: https://filesamples.com/samples/document/txt/sample1.txt) numeFisier + extensie (Ex: sample.txt)
+
+7. Listare fisiere ---> list C:\Users\mariu\Desktop\test
