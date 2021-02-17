@@ -1,0 +1,10 @@
+Afișați numele studenților care iau cea mai mare bursa acordată.
+Afișați numele studenților care sunt colegi cu un student pe nume Arhire (coleg = același an si aceeași grupă).
+Pentru fiecare grupă afișați numele studenților care au obținut cea mai mică notă la nivelul grupei.
+Identificați studenții a căror medie este mai mare decât media tuturor notelor din baza de date. Afișați numele și media acestora.
+Afișați numele și media primilor trei studenți ordonați descrescător după medie.
+Afișați numele studentului (studenților) cu cea mai mare medie precum și valoarea mediei (atenție: limitarea numărului de linii poate elimina studenții de pe poziții egale; găsiți altă soluție).
+Afişaţi numele şi prenumele tuturor studenţilor care au luat aceeaşi nota ca şi Ciprian Ciobotariu la materia Logică. Excludeţi-l pe acesta din listă. (Se știe în mod cert că există un singur Ciprian Ciobotariu și că acesta are o singură notă la logică)
+Din tabela studenti, afisati al cincilea prenume in ordine alfabetica.
+Punctajul unui student se calculeaza ca fiind o suma intre produsul dintre notele luate si creditele la materiile la care au fost luate notele. Afisati toate informatiile studentului care este pe locul 3 in acest top.
+Afișați studenții care au notă maximă la o materie precum și nota și materia respectivă.

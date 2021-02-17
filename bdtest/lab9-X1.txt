@@ -1,0 +1,815 @@
+SQL> select count(*) from studenti;
+
+  COUNT(*)                                                                      
+----------                                                                      
+        13                                                                      
+
+SQL> select count(bursa) from studenti;
+
+COUNT(BURSA)                                                                    
+------------                                                                    
+           5                                                                    
+
+SQL> select count(distinct bursa) from studenti;
+
+COUNT(DISTINCTBURSA)                                                            
+--------------------                                                            
+                   3                                                            
+
+SQL> select avg(all bursa) from studenti;
+
+AVG(ALLBURSA)                                                                   
+-------------                                                                   
+          350                                                                   
+
+SQL> select avg(nvl(bursa,0)) from studenti;
+
+AVG(NVL(BURSA,0))                                                               
+-----------------                                                               
+       134.615385                                                               
+
+SQL> SELECT MAX(valoare)
+  2      FROM note
+  3      GROUP BY nr_matricol;
+
+MAX(VALOARE)                                                                    
+------------                                                                    
+          10                                                                    
+           9                                                                    
+          10                                                                    
+           7                                                                    
+          10                                                                    
+           7                                                                    
+          10                                                                    
+           7                                                                    
+          10                                                                    
+          10                                                                    
+
+10 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT  nr_matricol, MAX(valoare)
+  2      FROM note
+  3*     GROUP BY nr_matricol
+SQL> /
+
+NR_M MAX(VALOARE)                                                               
+---- ------------                                                               
+116            10                                                               
+119             9                                                               
+111            10                                                               
+118             7                                                               
+114            10                                                               
+117             7                                                               
+200            10                                                               
+112             7                                                               
+113            10                                                               
+115            10                                                               
+
+10 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT  nr_matricol, MAX(valoare), id_curs
+  2      FROM note
+  3*     GROUP BY nr_matricol
+SQL> 
+SQL> /
+SELECT  nr_matricol, MAX(valoare), id_curs
+                                   *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT id_curs, COUNT(valoare)
+  2     FROM note
+  3     GROUP BY id_curs;
+
+ID COUNT(VALOARE)                                                               
+-- --------------                                                               
+26              5                                                               
+21             10                                                               
+22              9                                                               
+25              5                                                               
+24              5                                                               
+23              9                                                               
+
+6 rows selected.
+
+SQL> SELECT id_curs, COUNT(valoare)
+  2     FROM note
+  3     WHERE valoare>8
+  4     GROUP BY id_curs;
+
+ID COUNT(VALOARE)                                                               
+-- --------------                                                               
+26              1                                                               
+21              4                                                               
+22              4                                                               
+24              3                                                               
+23              5                                                               
+
+SQL> SELECT id_curs, COUNT(valoare)
+  2     FROM note
+  3     GROUP BY id_curs
+  4     HAVING COUNT(valoare)>8;
+
+ID COUNT(VALOARE)                                                               
+-- --------------                                                               
+21             10                                                               
+22              9                                                               
+23              9                                                               
+
+SQL> select an, count(*) from studenti group by an;
+
+        AN   COUNT(*)                                                           
+---------- ----------                                                           
+         1          4                                                           
+         2          4                                                           
+         3          5                                                           
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select an, grupa, count(*) 
+  2  from studenti 
+  3  group by an, grupa
+  4* order by an, grupa
+SQL> /
+
+        AN GR   COUNT(*)                                                        
+---------- -- ----------                                                        
+         1 B1          3                                                        
+         1 B2          1                                                        
+         2 A1          3                                                        
+         2 B2          1                                                        
+         3 A2          3                                                        
+         3 A4          1                                                        
+         3 B3          1                                                        
+
+7 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select an, grupa, count(*), count(bursa)
+  2  from studenti 
+  3  group by an, grupa
+  4* order by an, grupa
+SQL> 
+SQL> /
+
+        AN GR   COUNT(*) COUNT(BURSA)                                           
+---------- -- ---------- ------------                                           
+         1 B1          3            2                                           
+         1 B2          1            0                                           
+         2 A1          3            2                                           
+         2 B2          1            0                                           
+         3 A2          3            1                                           
+         3 A4          1            0                                           
+         3 B3          1            0                                           
+
+7 rows selected.
+
+SQL> select sum(bursa) from studenti;
+
+SUM(BURSA)                                                                      
+----------                                                                      
+      1750                                                                      
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1* select sum(bursa)/count(*) from studenti
+SQL> /
+
+SUM(BURSA)/COUNT(*)                                                             
+-------------------                                                             
+         134.615385                                                             
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1* select avg(nvl(bursa,0)) from studenti
+SQL> /
+
+AVG(NVL(BURSA,0))                                                               
+-----------------                                                               
+       134.615385                                                               
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select to_char(data_notare,'day'), count(valoare)
+  2  from note
+  3* group by to_char(data_notare,'day')
+SQL> /
+
+TO_CHAR(DATA_NOTARE,'DAY')           COUNT(VALOARE)                             
+------------------------------------ --------------                             
+monday                                            4                             
+thursday                                          1                             
+saturday                                          5                             
+sunday                                            9                             
+tuesday                                          13                             
+wednesday                                         8                             
+friday                                            3                             
+
+7 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select to_char(data_notare,'day'), count(valoare)
+  2  from note
+  3  group by to_char(data_notare,'day')
+  4* order by to_char(data_notare,'day')
+SQL> /
+
+TO_CHAR(DATA_NOTARE,'DAY')           COUNT(VALOARE)                             
+------------------------------------ --------------                             
+friday                                            3                             
+monday                                            4                             
+saturday                                          5                             
+sunday                                            9                             
+thursday                                          1                             
+tuesday                                          13                             
+wednesday                                         8                             
+
+7 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select to_char(data_notare,'day'), count(valoare)
+  2  from note
+  3  group by to_char(data_notare,'day')
+  4* order by to_char(data_notare,'d')
+SQL> /
+order by to_char(data_notare,'d')
+                 *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select to_char(data_notare,'day'), count(valoare)
+  2  from note
+  3  group by to_char(data_notare,'day'), to_char(data_notare,'d')
+  4* order by to_char(data_notare,'d')
+SQL> /
+
+TO_CHAR(DATA_NOTARE,'DAY')           COUNT(VALOARE)                             
+------------------------------------ --------------                             
+sunday                                            9                             
+monday                                            4                             
+tuesday                                          13                             
+wednesday                                         8                             
+thursday                                          1                             
+friday                                            3                             
+saturday                                          5                             
+
+7 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select to_char(data_notare,'day'), count(valoare)
+  2  from note
+  3  group by to_char(data_notare,'day'), to_char(data_notare,'d')
+  4  having count(valoare)>=5
+  5* order by to_char(data_notare,'d')
+SQL> /
+
+TO_CHAR(DATA_NOTARE,'DAY')           COUNT(VALOARE)                             
+------------------------------------ --------------                             
+sunday                                            9                             
+tuesday                                          13                             
+wednesday                                         8                             
+saturday                                          5                             
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select nr_matricol
+  2  from note
+  3* where valoare = 10
+SQL> /
+
+NR_M                                                                            
+----                                                                            
+111                                                                             
+113                                                                             
+114                                                                             
+115                                                                             
+115                                                                             
+115                                                                             
+116                                                                             
+116                                                                             
+200                                                                             
+
+9 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select * 
+  2  from studenti
+  3  where nr_matricol IN
+  4  	(select nr_matricol
+  5  	from note
+  6* 	where valoare = 10)
+SQL> /
+
+NR_M NUME       PRENUME            AN GR      BURSA DATA_NAST                   
+---- ---------- ---------- ---------- -- ---------- ---------                   
+111  Popescu    Bogdan              3 A2            17-FEB-95                   
+113  Antonie    Ioana               3 A2        450 03-JAN-95                   
+114  Arhire     Raluca              3 A4            26-DEC-95                   
+115  Panaite    Alexandru           3 B3            13-APR-95                   
+116  Bodnar     Ioana               2 A1            26-AUG-96                   
+
+SQL> (SELECT grupa, an, MAX(valoare)
+  2                FROM studenti s, note n
+  3                WHERE s.nr_matricol=n.nr_matricol
+  4                GROUP BY grupa, an);
+
+GR         AN MAX(VALOARE)                                                      
+-- ---------- ------------                                                      
+A1          2           10                                                      
+B2          2            9                                                      
+B3          3           10                                                      
+A2          3           10                                                      
+A4          3           10                                                      
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  (SELECT grupa, an, MAX(valoare)
+  2                FROM studenti natural join note 
+  3*               GROUP BY grupa, an)
+SQL> /
+
+GR         AN MAX(VALOARE)                                                      
+-- ---------- ------------                                                      
+A1          2           10                                                      
+B2          2            9                                                      
+B3          3           10                                                      
+A2          3           10                                                      
+A4          3           10                                                      
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select nume, prenume, valoare, an, grupa
+  2  from studenti natural join note
+  3  where (grupa, an, valoare)
+  4  	IN (SELECT grupa, an, MAX(valoare)
+  5                FROM studenti natural join note 
+  6*               GROUP BY grupa, an)
+SQL> /
+
+NUME       PRENUME       VALOARE         AN GR                                  
+---------- ---------- ---------- ---------- --                                  
+Popescu    Bogdan             10          3 A2                                  
+Antonie    Ioana              10          3 A2                                  
+Arhire     Raluca             10          3 A4                                  
+Panaite    Alexandru          10          3 B3                                  
+Panaite    Alexandru          10          3 B3                                  
+Panaite    Alexandru          10          3 B3                                  
+Bodnar     Ioana              10          2 A1                                  
+Bodnar     Ioana              10          2 A1                                  
+Bodnar     Ioana               9          2 B2                                  
+
+9 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select *
+  2  from studenti
+  3* order by nume
+SQL> /
+
+NR_M NUME       PRENUME            AN GR      BURSA DATA_NAST                   
+---- ---------- ---------- ---------- -- ---------- ---------                   
+113  Antonie    Ioana               3 A2        450 03-JAN-95                   
+117  Archip     Andrada             2 A1        350 03-APR-96                   
+121  Arhire     Alexandra           1 B1            02-JUL-97                   
+114  Arhire     Raluca              3 A4            26-DEC-95                   
+119  Bodnar     Ioana               2 B2            10-JUN-96                   
+116  Bodnar     Ioana               2 A1            26-AUG-96                   
+123  Bucur      Andreea             1 B2            10-MAY-97                   
+118  Ciobotariu Ciprian             2 A1        350 03-APR-96                   
+122  Cobzaru    George              1 B1        350 29-APR-97                   
+115  Panaite    Alexandru           3 B3            13-APR-95                   
+120  Pintescu   Andrei              1 B1        250 26-AUG-97                   
+
+NR_M NUME       PRENUME            AN GR      BURSA DATA_NAST                   
+---- ---------- ---------- ---------- -- ---------- ---------                   
+111  Popescu    Bogdan              3 A2            17-FEB-95                   
+112  Prelipcean Radu                3 A2            26-MAY-95                   
+
+13 rows selected.
+
+SQL> set pagesize 100;
+SQL> /
+
+NR_M NUME       PRENUME            AN GR      BURSA DATA_NAST                   
+---- ---------- ---------- ---------- -- ---------- ---------                   
+113  Antonie    Ioana               3 A2        450 03-JAN-95                   
+117  Archip     Andrada             2 A1        350 03-APR-96                   
+121  Arhire     Alexandra           1 B1            02-JUL-97                   
+114  Arhire     Raluca              3 A4            26-DEC-95                   
+119  Bodnar     Ioana               2 B2            10-JUN-96                   
+116  Bodnar     Ioana               2 A1            26-AUG-96                   
+123  Bucur      Andreea             1 B2            10-MAY-97                   
+118  Ciobotariu Ciprian             2 A1        350 03-APR-96                   
+122  Cobzaru    George              1 B1        350 29-APR-97                   
+115  Panaite    Alexandru           3 B3            13-APR-95                   
+120  Pintescu   Andrei              1 B1        250 26-AUG-97                   
+111  Popescu    Bogdan              3 A2            17-FEB-95                   
+112  Prelipcean Radu                3 A2            26-MAY-95                   
+
+13 rows selected.
+
+SQL> SELECT * FROM
+  2        (SELECT * FROM studenti ORDER BY nume, prenume)
+  3      WHERE ROWNUM<4;
+
+NR_M NUME       PRENUME            AN GR      BURSA DATA_NAST                   
+---- ---------- ---------- ---------- -- ---------- ---------                   
+113  Antonie    Ioana               3 A2        450 03-JAN-95                   
+117  Archip     Andrada             2 A1        350 03-APR-96                   
+121  Arhire     Alexandra           1 B1            02-JUL-97                   
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT * FROM
+  2        (SELECT * FROM studenti ORDER BY nume, prenume)
+  3*     WHERE ROWNUM=3
+SQL> /
+
+no rows selected
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, ROWNUM AS rn FROM
+  2*       (SELECT nume, prenume FROM studenti ORDER BY nume, prenume)
+SQL> /
+
+NUME       PRENUME            RN                                                
+---------- ---------- ----------                                                
+Antonie    Ioana               1                                                
+Archip     Andrada             2                                                
+Arhire     Alexandra           3                                                
+Arhire     Raluca              4                                                
+Bodnar     Ioana               5                                                
+Bodnar     Ioana               6                                                
+Bucur      Andreea             7                                                
+Ciobotariu Ciprian             8                                                
+Cobzaru    George              9                                                
+Panaite    Alexandru          10                                                
+Pintescu   Andrei             11                                                
+Popescu    Bogdan             12                                                
+Prelipcean Radu               13                                                
+
+13 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select nume, prenume
+  2  from
+  3  (SELECT nume, prenume, ROWNUM AS rn FROM
+  4        (SELECT nume, prenume FROM studenti ORDER BY nume, prenume)
+  5  )
+  6* where rn=3
+SQL> /
+
+NUME       PRENUME                                                              
+---------- ----------                                                           
+Arhire     Alexandra                                                            
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1* (SELECT nume, prenume, ROWNUM AS rn FROM studenti ORDER BY nume, prenume)
+SQL> /
+(SELECT nume, prenume, ROWNUM AS rn FROM studenti ORDER BY nume, prenume)
+                                                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, ROWNUM AS rn 
+  2  FROM studenti 
+  3* ORDER BY nume, prenume
+SQL> /
+
+NUME       PRENUME            RN                                                
+---------- ---------- ----------                                                
+Antonie    Ioana               3                                                
+Archip     Andrada             7                                                
+Arhire     Alexandra          11                                                
+Arhire     Raluca              4                                                
+Bodnar     Ioana               9                                                
+Bodnar     Ioana               6                                                
+Bucur      Andreea            13                                                
+Ciobotariu Ciprian             8                                                
+Cobzaru    George             12                                                
+Panaite    Alexandru           5                                                
+Pintescu   Andrei             10                                                
+Popescu    Bogdan              1                                                
+Prelipcean Radu                2                                                
+
+13 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume
+  2  FROM studenti 
+  3  WHERE bursa = 
+  4* (select max(bursa) from studenti)
+SQL> /
+
+NUME       PRENUME                                                              
+---------- ----------                                                           
+Antonie    Ioana                                                                
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, bursa
+  2  FROM studenti 
+  3  WHERE bursa = 
+  4* (select max(bursa) from studenti)
+SQL> /
+
+NUME       PRENUME         BURSA                                                
+---------- ---------- ----------                                                
+Antonie    Ioana             450                                                
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, avg(valoare)
+  2  FROM studenti natural join note
+  3* GROUP BY nr_matricol
+SQL> /
+SELECT nume, prenume, avg(valoare)
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, avg(valoare)
+  2  FROM studenti natural join note
+  3* GROUP BY nr_matricol, nume, prenume
+SQL> /
+
+NUME       PRENUME    AVG(VALOARE)                                              
+---------- ---------- ------------                                              
+Popescu    Bogdan              8.5                                              
+Ciobotariu Ciprian               7                                              
+Panaite    Alexandru             9                                              
+Bodnar     Ioana                 8                                              
+Arhire     Raluca       6.33333333                                              
+Antonie    Ioana        7.66666667                                              
+Prelipcean Radu         5.83333333                                              
+Archip     Andrada      5.66666667                                              
+Bodnar     Ioana        9.66666667                                              
+
+9 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, avg(valoare)
+  2  FROM studenti natural join note
+  3  GROUP BY nr_matricol, nume, prenume
+  4* HAVING avg(valoare) > (select avg(valoare) from note)
+SQL> /
+
+NUME       PRENUME    AVG(VALOARE)                                              
+---------- ---------- ------------                                              
+Popescu    Bogdan              8.5                                              
+Panaite    Alexandru             9                                              
+Bodnar     Ioana                 8                                              
+Antonie    Ioana        7.66666667                                              
+Bodnar     Ioana        9.66666667                                              
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1* select avg(valoare) from note
+SQL> /
+
+AVG(VALOARE)                                                                    
+------------                                                                    
+  7.55813953                                                                    
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select id_curs, max(valoare)
+  2  from note
+  3* group by id_curs
+SQL> /
+
+ID MAX(VALOARE)                                                                 
+-- ------------                                                                 
+26            9                                                                 
+21           10                                                                 
+22           10                                                                 
+25            8                                                                 
+24           10                                                                 
+23           10                                                                 
+
+6 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select nume, prenume, id_curs, valoare
+  2  from studenti natural join note
+  3  where (id_curs, valoare) IN 
+  4  	(select id_curs, max(valoare)
+  5  	from note
+  6* 	group by id_curs)
+SQL> /
+
+NUME       PRENUME    ID    VALOARE                                             
+---------- ---------- -- ----------                                             
+Popescu    Bogdan     23         10                                             
+Antonie    Ioana      24         10                                             
+Arhire     Raluca     23         10                                             
+Panaite    Alexandru  23         10                                             
+Panaite    Alexandru  24         10                                             
+Panaite    Alexandru  25          8                                             
+Panaite    Alexandru  21         10                                             
+Panaite    Alexandru  26          9                                             
+Bodnar     Ioana      22         10                                             
+Bodnar     Ioana      21         10                                             
+
+10 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select avg(bursa)
+  2  from studenti
+  3* group by an
+SQL> /
+
+AVG(BURSA)                                                                      
+----------                                                                      
+       300                                                                      
+       350                                                                      
+       450                                                                      
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select an, avg(bursa)
+  2  from studenti
+  3* group by an
+SQL> /
+
+        AN AVG(BURSA)                                                           
+---------- ----------                                                           
+         1        300                                                           
+         2        350                                                           
+         3        450                                                           
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, an, bursa
+  2  from studenti s1
+  3  where bursa > 
+  4  	(select avg(bursa)
+  5  	from studenti s2
+  6  	group by an
+  7  	having s2.an = s1.an
+  8* 	)
+SQL> /
+
+NUME       PRENUME            AN      BURSA                                     
+---------- ---------- ---------- ----------                                     
+Cobzaru    George              1        350                                     
+
+SQL> select * from studenti;
+
+NR_M NUME       PRENUME            AN GR      BURSA DATA_NAST                   
+---- ---------- ---------- ---------- -- ---------- ---------                   
+111  Popescu    Bogdan              3 A2            17-FEB-95                   
+112  Prelipcean Radu                3 A2            26-MAY-95                   
+113  Antonie    Ioana               3 A2        450 03-JAN-95                   
+114  Arhire     Raluca              3 A4            26-DEC-95                   
+115  Panaite    Alexandru           3 B3            13-APR-95                   
+116  Bodnar     Ioana               2 A1            26-AUG-96                   
+117  Archip     Andrada             2 A1        350 03-APR-96                   
+118  Ciobotariu Ciprian             2 A1        350 03-APR-96                   
+119  Bodnar     Ioana               2 B2            10-JUN-96                   
+120  Pintescu   Andrei              1 B1        250 26-AUG-97                   
+121  Arhire     Alexandra           1 B1            02-JUL-97                   
+122  Cobzaru    George              1 B1        350 29-APR-97                   
+123  Bucur      Andreea             1 B2            10-MAY-97                   
+
+13 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, bursa, grupa, an
+  2  from studenti s1
+  3  WHERE   
+  4  EXISTS   
+  5  (SELECT 'aaaa' 
+  6             FROM studenti s2 
+  7             WHERE bursa IS NOT NULL 
+  8  	   AND s1.an = s2.an AND 
+  9             s1.grupa=s2.grupa
+ 10* ) 
+SQL> /
+
+NUME       PRENUME         BURSA GR         AN                                  
+---------- ---------- ---------- -- ----------                                  
+Antonie    Ioana             450 A2          3                                  
+Prelipcean Radu                  A2          3                                  
+Popescu    Bogdan                A2          3                                  
+Ciobotariu Ciprian           350 A1          2                                  
+Archip     Andrada           350 A1          2                                  
+Bodnar     Ioana                 A1          2                                  
+Cobzaru    George            350 B1          1                                  
+Arhire     Alexandra             B1          1                                  
+Pintescu   Andrei            250 B1          1                                  
+
+9 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, bursa, grupa, an
+  2  from studenti s1
+  3  WHERE   
+  4  EXISTS   
+  5  (SELECT 'aaaa' 
+  6             FROM studenti s2 
+  7             WHERE bursa IS NOT NULL 
+  8  	   AND s1.an = s2.an AND 
+  9             s1.grupa=s2.grupa
+ 10  	   AND s1.nr_mtricol != s2.nr_matricol
+ 11* ) 
+SQL> /
+	   AND s1.nr_mtricol != s2.nr_matricol
+	       *
+ERROR at line 10:
+ORA-00904: "S1"."NR_MTRICOL": invalid identifier 
+
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  SELECT nume, prenume, bursa, grupa, an
+  2  from studenti s1
+  3  WHERE   
+  4  EXISTS   
+  5  (SELECT 'aaaa' 
+  6             FROM studenti s2 
+  7             WHERE bursa IS NOT NULL 
+  8  	   AND s1.an = s2.an AND 
+  9             s1.grupa=s2.grupa
+ 10  	   AND s1.nr_matricol != s2.nr_matricol
+ 11* ) 
+SQL> /
+
+NUME       PRENUME         BURSA GR         AN                                  
+---------- ---------- ---------- -- ----------                                  
+Prelipcean Radu                  A2          3                                  
+Popescu    Bogdan                A2          3                                  
+Ciobotariu Ciprian           350 A1          2                                  
+Bodnar     Ioana                 A1          2                                  
+Archip     Andrada           350 A1          2                                  
+Cobzaru    George            350 B1          1                                  
+Arhire     Alexandra             B1          1                                  
+Pintescu   Andrei            250 B1          1                                  
+
+8 rows selected.
+
+SQL> spool out
